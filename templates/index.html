@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seed Weight Prediction</title>
+    <style>
+        body { font-family: Arial; background: #f4f4f4; padding: 20px; }
+        form { background: #fff; padding: 20px; border-radius: 8px; max-width: 600px; margin: auto; }
+        input { width: 100%; padding: 10px; margin: 8px 0; }
+        button { background: #28a745; color: white; padding: 10px; border: none; cursor: pointer; width: 100%; }
+        button:hover { background: #218838; }
+        .result { margin-top: 20px; font-size: 18px; color: #333; text-align: center; }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">Predict Total Seed Dry Weight</h1>
+
+    <form action="/predict" method="post">
+        <input type="text" name="Species" placeholder="Species"
+               value="{{ form_data['Species'] if form_data else '' }}" required>
+
+        <input type="text" name="site" placeholder="Site"
+               value="{{ form_data['site'] if form_data else '' }}" required>
+
+        <input type="text" name="plot" placeholder="Plot"
+               value="{{ form_data['plot'] if form_data else '' }}" required>
+
+        <input type="text" name="trt" placeholder="Treatment Code"
+               value="{{ form_data['trt'] if form_data else '' }}" required>
+
+        <input type="text" name="Treatment" placeholder="Treatment"
+               value="{{ form_data['Treatment'] if form_data else '' }}" required>
+
+        <input type="number" step="any" name="panicles" placeholder="Panicles"
+               value="{{ form_data['panicles'] if form_data else '' }}" required>
+
+        <input type="number" step="any" name="sqrtpanicles" placeholder="Sqrt Panicles"
+               value="{{ form_data['sqrtpanicles'] if form_data else '' }}" required>
+
+        <input type="number" step="any" name="cover0" placeholder="Cover0"
+               value="{{ form_data['cover0'] if form_data else '' }}" required>
+
+        <input type="number" step="any" name="arsincover0" placeholder="Arsin Cover0"
+               value="{{ form_data['arsincover0'] if form_data else '' }}" required>
+
+        <input type="number" step="any" name="cover5" placeholder="Cover5"
+               value="{{ form_data['cover5'] if form_data else '' }}" required>
+
+        <input type="number" step="any" name="arsincover5" placeholder="Arsin Cover5"
+               value="{{ form_data['arsincover5'] if form_data else '' }}" required>
+
+        <input type="number" step="any" name="matureseeddw" placeholder="Mature Seed DW"
+               value="{{ form_data['matureseeddw'] if form_data else '' }}" required>
+
+        <input type="number" step="any" name="immatureseeddw" placeholder="Immature Seed DW"
+               value="{{ form_data['immatureseeddw'] if form_data else '' }}" required>
+
+        <input type="number" step="any" name="percentimmatureseeds" placeholder="Percent Immature Seeds"
+               value="{{ form_data['percentimmatureseeds'] if form_data else '' }}" required>
+
+        <input type="number" step="any" name="arsinpercentimmatureseeds"
+               placeholder="Arsin Percent Immature Seeds"
+               value="{{ form_data['arsinpercentimmatureseeds'] if form_data else '' }}" required>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+        <div class="result">{{ result }}</div>
+    {% endif %}
+</body>
+</html>
